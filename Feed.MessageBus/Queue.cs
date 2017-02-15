@@ -9,9 +9,8 @@ namespace Feed.MessageBus
 {
     public class Bus : IDisposable
     {
-
-        IConnection conn;
-        IModel model;
+        private IConnection conn;
+        private IModel model;
 
         public Bus(string hostname, string virtualHost, string user, string pass)
         {

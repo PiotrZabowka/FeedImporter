@@ -1,30 +1,27 @@
 ﻿using System;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System.Text;
-using Newtonsoft.Json;
-using System.Net.Http;
 using Feed.MessageBus;
+using RabbitMQ.Client;
+using System.Net.Http;
+using Microsoft.Extensions.Configuration;
+using System.Text;
 
 namespace ConsoleApp3
 {
-    class Program
+    public class FeedParserService : BusService
     {
-        static void Main(string[] args)
+        public FeedParserService(IConfigurationRoot configuration) : base(configuration)
         {
-            using (var bus = new Bus("localhost", "/", "guest", "guest"))
-            {
-                bus.Publishes<ParsedFeedLineMessage>();
-                bus.Handles<DownloadedFeedMessage>(Bus_Received, "tsv.v1");
-
-                Console.WriteLine(" Press [enter] to exit.");
-                Console.ReadLine();
-            }
-
         }
 
-        private static void Bus_Received(IModel model, DownloadedFeedMessage message)
+        public override void Initialize()
         {
+            this.Bus.Publishes<ParsedFeedLineMessage>();
+            this.Bus.Handles<DownloadedFeedMessage>(this.Handle, "tsv.v1");
+        }
+        private void Handle(IModel model, DownloadedFeedMessage message)
+        {
+            Console.WriteLine($"parsing {message.LocationId}");
+
             //parse message raw data
             var text = Encoding.UTF8.GetString(message.RawData);
             string[] lines = text.Split('\n');
@@ -40,7 +37,7 @@ namespace ConsoleApp3
                     Type = "dict",
                     Version = 1
                 };
-                for (int j = 0; j < lineValues.Length; j++)
+                for (int j = 0; j < Math.Min(lineValues.Length, headers.Length); j++)
                 {
                     line.Values[headers[j]] = lineValues[j];
                 }

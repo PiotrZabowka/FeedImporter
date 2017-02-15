@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FeedDownloader": {
+      "commandName": "Project",
+      "commandLineArgs": "/service=FeedDownloaderService"
+    }
+  }
+}
