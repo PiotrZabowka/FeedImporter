@@ -26,7 +26,7 @@ namespace Feed.MessageBus
 
         public void Publishes<T>() where T : IMessage
         {
-            this.model.ExchangeDeclare(typeof(T).FullName, ExchangeType.Direct);
+            this.model.ExchangeDeclare(typeof(T).FullName, ExchangeType.Topic);
         }
 
         public void Publish<T>(T message) where T : IMessage
@@ -34,9 +34,8 @@ namespace Feed.MessageBus
             this.model.Publish<T>(message);
         }
 
-        public void Handles<T>(Action<IModel, T> handler, string routingKey) where T : IMessage
+        public void Handles<T>(Action<IModel, T> handler, string queueName, string routingKey) where T : IMessage
         {
-            var queueName = $"{typeof(T).FullName}_{routingKey}";
             var exchange = typeof(T).FullName;
 
             this.model.QueueDeclare(queueName, true, false, false, null);

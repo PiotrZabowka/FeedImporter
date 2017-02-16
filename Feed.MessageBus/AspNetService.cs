@@ -14,8 +14,10 @@ namespace FeedDownloader
     {
         protected IWebHostBuilder Builder;
         protected IWebHost Host;
-        public AspNetService(IConfigurationRoot config)
+        protected IConfiguration Configuration;
+        public AspNetService(IConfiguration config)
         {
+            this.Configuration = config;
             this.Builder = new WebHostBuilder()
                 .UseConfiguration(config);
         }

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Feed.MessageBus\Feed.MessageBus.csproj" />
+    <ProjectReference Include="..\Feed.MessageBus\Feed.Microservice.csproj" />
     <ProjectReference Include="..\Feed.Model\Feed.Model.csproj" />
   </ItemGroup>
 

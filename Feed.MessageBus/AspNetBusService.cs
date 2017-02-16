@@ -6,7 +6,7 @@ namespace FeedDownloader
     public abstract class AspNetBusService : AspNetService
     {
         protected Bus Bus;
-        public AspNetBusService(IConfigurationRoot configuration) : base(configuration)
+        public AspNetBusService(IConfiguration configuration) : base(configuration)
         {
             this.Bus = new Bus(configuration["bus:hostname"], configuration["bus:virtualHost"], configuration["bus:user"], configuration["bus:password"]);
 

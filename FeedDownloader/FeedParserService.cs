@@ -7,16 +7,16 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    public class FeedParserService : BusService
+    public class TsvFeedParserService : BusService
     {
-        public FeedParserService(IConfigurationRoot configuration) : base(configuration)
+        public TsvFeedParserService(IConfigurationRoot configuration) : base(configuration)
         {
         }
 
         public override void Initialize()
         {
             this.Bus.Publishes<ParsedFeedLineMessage>();
-            this.Bus.Handles<DownloadedFeedMessage>(this.Handle, "tsv.v1");
+            this.Bus.Handles<DownloadedFeedMessage>(this.Handle, "TsvFeedParser", "tsv.v1");
         }
         private void Handle(IModel model, DownloadedFeedMessage message)
         {

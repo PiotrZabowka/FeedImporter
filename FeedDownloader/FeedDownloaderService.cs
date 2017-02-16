@@ -17,7 +17,7 @@ namespace ConsoleApp3
         public override void Initialize()
         {
             this.Bus.Publishes<DownloadedFeedMessage>();
-            this.Bus.Handles<FeedUrlMessage>(this.Handle, "tsv.v1");
+            this.Bus.Handles<FeedUrlMessage>(this.Handle,"FeedDownloader", "*.v1");
         }
         private void Handle(IModel model, FeedUrlMessage message)
         {

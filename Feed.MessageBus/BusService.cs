@@ -6,7 +6,7 @@ namespace ConsoleApp3
     public abstract class  BusService : IService
     {
         protected Bus Bus;
-        public BusService(IConfigurationRoot configuration)
+        public BusService(IConfiguration configuration)
         {
             this.Bus = new Bus(configuration["bus:hostname"], configuration["bus:virtualHost"], configuration["bus:user"], configuration["bus:password"]);
         }

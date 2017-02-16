@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feed.Model", "Feed.Model\Feed.Model.csproj", "{7F4B549A-BCFD-4EFE-8DEA-C30CCACD3D3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feed.MessageBus", "Feed.MessageBus\Feed.MessageBus.csproj", "{445AF515-682E-45F7-AB9A-17BE9924EEBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feed.Microservice", "Feed.MessageBus\Feed.Microservice.csproj", "{445AF515-682E-45F7-AB9A-17BE9924EEBC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedDownloader", "FeedDownloader\FeedDownloader.csproj", "{9D556863-8807-4467-BC46-76D0C1A4CC45}"
 EndProject
